@@ -1,7 +1,24 @@
-<h2>{{person.firstname | uppercase }} {{person.lastname | uppercase}}</h2>
-<div><span>ID: </span> {{person.id}}</div>
-<div>
-  <label for="firstname">First Name: </label>
-  <input id="firstname" [(ngModel)]="person.firstname" placeholder="First Name">
+<div *ngIf="!isAdding else addingPerson">
+  <button type="button" [disabled]="isEditing" (click)="toggleAdding(true)">
+    Add new
+  </button>
 </div>
-<div><span>Last Name: </span> {{person.lastname}}</div>
+
+<ng-template #addingPerson>
+  <app-person-edit (toggleIsEditingOrAdding)="toggleAdding($event)"></app-person-edit>
+</ng-template>
+
+<ul class="people">
+  <li *ngFor="let person of people">
+    <button type="button" (click)="onSelect(person)" [disabled]="isAdding || isEditing">
+      <span class="firstname">{{person.firstname}} {{person.lastname}}</span>
+      <div *ngIf="selectedPerson == person">
+        <app-person-detail [person]="selectedPerson" (toggleIsEditing)="toggleEditing($event)"></app-person-detail>
+
+      </div>
+
+    </button>
+  </li>
+</ul>
+
+
