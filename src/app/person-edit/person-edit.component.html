@@ -1,0 +1,55 @@
+<div>
+  <form [formGroup]="contactForm">
+
+    <div>
+      <label for="firstname">First Name: </label>
+      <input id="firstname" formControlName="firstname">
+
+      <div *ngIf="contactForm.controls.firstname.invalid && (contactForm.controls.firstname.dirty || contactForm.controls.firstname.touched)">
+        <div *ngIf="contactForm.controls.firstname.errors?.['required']">
+          Please enter a first name.
+        </div>
+      </div>
+
+    </div>
+
+    <div>
+      <label for="lastname">Last Name: </label>
+      <input id="lastname" formControlName="lastname">
+
+      <div *ngIf="contactForm.controls.lastname.invalid && (contactForm.controls.lastname.dirty || contactForm.controls.lastname.touched)">
+        <div *ngIf="contactForm.controls.lastname.errors?.['required']">
+          Please enter a last name.
+        </div>
+      </div>
+
+    </div>
+
+    <div *ngFor="let tel of telephones.controls; let i = index">
+      <form [formGroup]="tel">
+        <select id="telDesc">
+          <option value="Mobil">Mobil</option>
+          <option value="Festnetz">Festnetz</option>
+          <option value="Arbeit">Arbeit</option>
+        </select>
+      </form>
+    </div>
+
+  </form>
+
+  <button *ngIf="!person" type="button" (click)="save()" [disabled]="!contactForm.valid">
+    Save
+  </button>
+
+  <button *ngIf="person" type="button" (click)="update()" [disabled]="!contactForm.valid">
+    Update
+  </button>
+
+  <button type="button" (click)="cancel()">
+    Cancel
+  </button>
+
+  <button *ngIf="person" type="button" (click)="delete(person)">
+    Delete
+  </button>
+</div>
