@@ -1,4 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+  display: grid;
+  justify-items: center;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: rgb(194, 218, 230);
+  margin: 0;
+}
+button {
+  border: none;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+}

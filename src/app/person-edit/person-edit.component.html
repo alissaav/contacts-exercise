@@ -1,55 +1,136 @@
-<div>
+<div class="edit-form">
   <form [formGroup]="contactForm">
 
     <div>
-      <label for="firstname">First Name: </label>
-      <input id="firstname" formControlName="firstname">
+      <div class="input-container">
+        <label for="firstname">First Name: </label>
+        <input id="firstname" placeholder="First Name" formControlName="firstname">
+      </div>
 
       <div *ngIf="contactForm.controls.firstname.invalid && (contactForm.controls.firstname.dirty || contactForm.controls.firstname.touched)">
-        <div *ngIf="contactForm.controls.firstname.errors?.['required']">
+        <div *ngIf="contactForm.controls.firstname.errors?.['required']" class="invalid">
           Please enter a first name.
         </div>
       </div>
-
     </div>
 
     <div>
-      <label for="lastname">Last Name: </label>
-      <input id="lastname" formControlName="lastname">
+      <div class="input-container">
+        <input id="lastname" placeholder="Last Name" formControlName="lastname">
+        <label for="lastname">Last Name: </label>
+      </div>
 
       <div *ngIf="contactForm.controls.lastname.invalid && (contactForm.controls.lastname.dirty || contactForm.controls.lastname.touched)">
-        <div *ngIf="contactForm.controls.lastname.errors?.['required']">
+        <div *ngIf="contactForm.controls.lastname.errors?.['required']" class="invalid">
           Please enter a last name.
         </div>
       </div>
 
     </div>
 
-    <div *ngFor="let tel of telephones.controls; let i = index">
-      <form [formGroup]="tel">
-        <select id="telDesc">
-          <option value="Mobil">Mobil</option>
-          <option value="Festnetz">Festnetz</option>
-          <option value="Arbeit">Arbeit</option>
-        </select>
+    <div class="subform-header" id="tel-header">
+      <h4>Telephones</h4>
+      <button (click)="addTelephone()">
+        <i class="material-icons" id="add-icon-small">add</i>
+        Add Telephone Number
+      </button>
+    </div>
+
+    <div *ngFor="let tele of telephones.controls; let i = index" formArrayName="tel">
+      <form [formGroupName]="i">
+
+
+        <div class="input-container" id="tel-form">
+          <select id="telDesc" formControlName="desc">
+            <option value="Mobil">Mobil</option>
+            <option value="Festnetz">Festnetz</option>
+            <option value="Arbeit">Arbeit</option>
+            <option value="Privat">Privat</option>
+          </select>
+          <span>+49<input id="telNumber" type="tel" pattern="1[0-9]{6,10}" numbers-only="numbers-only" formControlName="number"></span>
+          <button (click)="deleteTelephone(i)"><i class="material-icons">cancel</i></button>
+        </div>
+
+
+        <div *ngIf="tele.invalid && (tele.dirty || tele.touched)" class="invalid">
+            Please enter a valid telephone number.
+        </div>
       </form>
+
+    </div>
+
+    <div class="subform-header" id="email-header">
+      <h4>E-Mails</h4>
+      <button (click)="addEmail()">
+        <i class="material-icons" id="add-icon-small">add</i>
+        Add E-Mail Address
+      </button>
+    </div>
+
+    <div *ngFor="let email of emails.controls; let i = index" formArrayName="email">
+      <form [formGroupName]="i">
+
+        <div class="input-container" id="email-form">
+          <select id="emailDesc" formControlName="desc">
+            <option value="Privat">Privat</option>
+            <option value="Schule">Schule</option>
+            <option value="Arbeit">Arbeit</option>
+          </select>
+          <input id="emailAddress" placeholder="E-Mail-Address" type="email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" formControlName="address">
+          <button (click)="deleteEmail(i)"><i class="material-icons">cancel</i></button>
+        </div>
+
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid">
+          Please enter a valid email.
+        </div>
+      </form>
+
     </div>
 
   </form>
 
-  <button *ngIf="!person" type="button" (click)="save()" [disabled]="!contactForm.valid">
-    Save
-  </button>
+  <h4>Address</h4>
+  <form [formGroup]="addressForm" class="input-container" id="address-form">
+    <label for="street">Street: </label>
+    <input id="street" placeholder="Street" formControlName="street">
+    <div id="postal-code-city-container">
+      <label for="postcode">Postal code: </label>
+      <input id="postcode" placeholder="Postal code" type="number" pattern="[0-9]{5}" formControlName="postcode">
+      <label for="city">City: </label>
+      <input id="city" placeholder="City" formControlName="city">
+    </div>
+    <label for="country">Country: </label>
+    <input id="country" placeholder="Country" formControlName="country">
 
-  <button *ngIf="person" type="button" (click)="update()" [disabled]="!contactForm.valid">
-    Update
-  </button>
+    <div *ngIf="addressForm.controls.street.invalid && (addressForm.controls.street.dirty || addressForm.controls.street.touched)" class="invalid">
+      Please enter a valid street name.
+    </div>
+    <div *ngIf="addressForm.controls.postcode.invalid && (addressForm.controls.postcode.dirty || addressForm.controls.postcode.touched)" class="invalid">
+      Please enter a valid post code.
+    </div>
+    <div *ngIf="addressForm.controls.city.invalid && (addressForm.controls.city.dirty || addressForm.controls.city.touched)" class="invalid">
+      Please enter a valid city.
+    </div>
+    <div *ngIf="addressForm.controls.country.invalid && (addressForm.controls.country.dirty || addressForm.controls.country.touched)" class="invalid">
+      Please enter a valid country.
+    </div>
+  </form>
+  <div id="buttons-div">
+    <button *ngIf="!person" type="button" (click)="save()" [disabled]="!contactForm.valid">
+      Save
+    </button>
 
-  <button type="button" (click)="cancel()">
-    Cancel
-  </button>
+    <button *ngIf="person" type="button" (click)="update()" [disabled]="!contactForm.valid">
+      Update
+    </button>
 
-  <button *ngIf="person" type="button" (click)="delete(person)">
-    Delete
-  </button>
+    <button type="button" (click)="cancel()">
+      Cancel
+    </button>
+
+    <button *ngIf="person" type="button" (click)="delete(person)">
+      Delete
+    </button>
+  </div>
+
 </div>

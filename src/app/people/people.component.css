@@ -1,0 +1,100 @@
+#wrapper{
+  width: 640px;
+  background-color: aliceblue;
+  padding: 20px;
+  padding-left:40px;
+  padding-right:40px;
+  margin-top: 40px;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  justify-self: center;
+}
+#header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#add-contact{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgb(194, 218, 230);
+  padding: 10px;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-shadow: rgba(0, 0, 0, .26) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  color: #3c4043;
+  border-radius: 24px;
+}
+#add-contact:disabled{
+  color: rgb(130, 130, 130);
+}
+#add-contact:hover{
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .24) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+
+}
+#add-contact span {
+  font-size: 12pt;
+  height: 16px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 8px;
+}
+#name-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  font-size: 12pt;
+  padding: 2px;
+}
+#lastname {
+  font-weight: 600;
+}
+.person-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 4vh;
+  background-color: rgb(255, 255, 255);
+  padding: 6px;
+  padding-left: 8px;
+  margin-bottom: 8px;
+  box-shadow: rgba(0, 0, 0, .05) 0 3px 5px -1px,rgba(0, 0, 0, .1) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+}
+.person-wrapper:hover{
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .24) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+
+}
+.dot{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  background-color:rgb(190, 190, 190);
+  color: rgb(244, 244, 244);
+  font-size: 11pt;
+  font-weight: 10;
+}
+.person-edit{
+  display: flex;
+  justify-content: center;
+}
+.person-edit#add-person{
+  padding: 32px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, .26) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+}
+#app-person-detail{
+  width: 90%;
+  padding: 24px;
+  align-self: center;
+}
+
+
+
+

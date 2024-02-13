@@ -1,11 +1,10 @@
 <div *ngIf="person">
-  Contact ID: {{person.id}}
-  <div *ngIf="!isEditing">
+  <div *ngIf="!isEditing" class="person-details">
 
     <h4 *ngIf="person.tel.length > 0">Telefon</h4>
     <div *ngFor="let number of person.tel">
       <span>{{number.desc}}: </span>
-      <span>0{{number.number}}</span>
+      <span>+49{{number.number}}</span>
     </div>
 
     <h4 *ngIf="person.email.length > 0">E-Mail</h4>
@@ -20,15 +19,17 @@
       <div>{{person.address.postcode}} {{person.address.city}}</div>
       <div>{{person.address.country}}</div>
     </div>
+    <div id="buttons-div">
+      <button type="button" id="edit" onClick="event.stopPropagation()" (click)="toggleEditing(true)">
+        Edit
+      </button>
+    </div>
 
-    <button type="button" onClick="event.stopPropagation()" (click)="toggleEditing(true)">
-      Edit
-    </button>
 
   </div>
 
   <div *ngIf="isEditing">
-    <app-person-edit [person]="person" (toggleIsEditingOrAdding)="toggleEditing($event)"></app-person-edit>
+    <app-person-edit class="add-person" id="person-add" [person]="person" (toggleIsEditingOrAdding)="toggleEditing($event)"></app-person-edit>
   </div>
 </div>
 

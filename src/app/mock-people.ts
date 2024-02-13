@@ -97,11 +97,11 @@ export const PEOPLE: Person[] = [
     tel: [
       <Telephone>{
         desc: 'Mobil',
-        number: 1221777283
+        number: 122177728
       },
       <Telephone>{
         desc: 'Arbeit',
-        number: 1221887283
+        number: 122188728
       },
     ],
     email: [

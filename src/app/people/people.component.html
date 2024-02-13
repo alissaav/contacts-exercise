@@ -1,24 +1,39 @@
-<div *ngIf="!isAdding else addingPerson">
-  <button type="button" [disabled]="isEditing" (click)="toggleAdding(true)">
-    Add new
-  </button>
+<div id="wrapper">
+  <div id="header">
+    <h1>Contacts</h1>
+    <div>
+      <button type="button" [disabled]="isEditing || isAdding" (click)="toggleAdding(true)" id="add-contact">
+
+        <i class="material-icons">add</i>
+        <span id="add-contact-text">Add Contact</span>
+
+      </button>
+    </div>
+  </div>
+  <hr>
+
+  <div class="addingPerson" *ngIf="isAdding">
+    <app-person-edit id="add-person" class="person-edit" (toggleIsEditingOrAdding)="toggleAdding($event)"></app-person-edit>
+  </div>
+
+  <ul class="people">
+    <li *ngFor="let person of people">
+      <button class="person-wrapper" type="button" (click)="onSelect(person)" [disabled]="isAdding || isEditing">
+
+        <div id="name-header">
+          <div class="dot">{{person.firstname.charAt(0)}}{{person.lastname.charAt(0)}}</div>
+          <div id="name">
+            <span id="firstname">{{person.firstname}} </span>
+            <span id="lastname">{{person.lastname}}</span>
+          </div>
+        </div>
+
+
+        <app-person-detail id="app-person-detail" class="person-detail" *ngIf="selectedPerson == person" [person]="selectedPerson" (toggleIsEditing)="toggleEditing($event)"></app-person-detail>
+
+
+
+      </button>
+    </li>
+  </ul>
 </div>
-
-<ng-template #addingPerson>
-  <app-person-edit (toggleIsEditingOrAdding)="toggleAdding($event)"></app-person-edit>
-</ng-template>
-
-<ul class="people">
-  <li *ngFor="let person of people">
-    <button type="button" (click)="onSelect(person)" [disabled]="isAdding || isEditing">
-      <span class="firstname">{{person.firstname}} {{person.lastname}}</span>
-      <div *ngIf="selectedPerson == person">
-        <app-person-detail [person]="selectedPerson" (toggleIsEditing)="toggleEditing($event)"></app-person-detail>
-
-      </div>
-
-    </button>
-  </li>
-</ul>
-
-

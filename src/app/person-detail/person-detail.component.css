@@ -1,0 +1,36 @@
+
+button#edit{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgb(194, 218, 230);
+  padding: 10px;
+  padding-left: 16px;
+  padding-right: 16px;
+  height: 24px;
+  box-shadow: rgba(0, 0, 0, .26) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  color: #3c4043;
+  border-radius: 24px;
+}
+#person-add.add-person {
+margin: 32px;
+}
+.edit-form{
+  align-self: center;
+  width: 100%;
+}
+#buttons-div{
+  padding-top: 12px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.person-details{
+  text-align: left;
+}
+h4{
+  font-size: 13pt;
+  color: #213c51;
+  text-align: left;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
