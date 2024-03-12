@@ -69,28 +69,6 @@ export const PEOPLE: Person[] = [
       country: "Deutschland"
     },
   },
-  { id: 4,
-    firstname: 'Philipp',
-    lastname: 'Avtonoschkin',
-    tel: [
-      <Telephone>{
-        desc: 'Mobil',
-        number: 15751996534
-      }
-    ],
-    email: [
-      <Email>{
-        desc: 'Arbeit',
-        address: 'dilipp@gmail.com'
-      }
-    ],
-    address: <Address>{
-      street: "Meisenkopfstr. 3",
-      postcode: 76530,
-      city: "Baden-Baden",
-      country: "Deutschland"
-    },
-  },
   { id: 7,
     firstname: 'Artur',
     lastname: 'Gerbersgagen',
